@@ -1,0 +1,117 @@
+import java.util.Arrays;
+
+public class FeedForwardNeuralNet {
+	double[][] networkWeights;
+	double[] thresholds;
+	int inputNodes;
+	int outputNodes;
+	
+	public FeedForwardNeuralNet(double[][] networkWeights, double[] thresholds, int inputNodes, int outputNodes)
+	{
+		this.networkWeights = networkWeights;
+		if(networkWeights.length != networkWeights[0].length)
+		{
+			System.err.println("FFNN declared with non-square matrix");
+			this.networkWeights = null;
+		}
+		this.thresholds = thresholds;
+		this.inputNodes = inputNodes;
+		this.outputNodes = outputNodes;
+	}
+	
+	public FeedForwardNeuralNet(int numNodes, int inputs, int outputs)
+	{
+		if(numNodes < inputs+outputs)
+		{
+			System.err.println("Can't have more inputs/outputs than nodes in a neural net");
+		}
+		this.networkWeights = new double[numNodes][numNodes];
+		for(int i=0; i<numNodes; i++)
+		{
+			for(int j=i+1; j<numNodes; j++)
+			{
+				networkWeights[i][j] = SeededRandom.rnd.nextDouble(Constants.MAXEDGEWEIGHT*2)-Constants.MAXEDGEWEIGHT;
+			}
+		}
+		this.thresholds = new double[numNodes];
+		for(int i=0; i<numNodes; i++)
+		{
+			thresholds[i]=SeededRandom.rnd.nextDouble(Constants.MAXNODETHRESHOLD*2)-Constants.MAXNODETHRESHOLD;
+		}
+	}
+	
+//	public boolean followsRules() {
+//		
+//	}
+	
+	public double[] runNeuralNetwork(double[] inputs)
+	{
+		if(inputs.length != inputNodes)
+		{
+			System.err.println("Wrong number of inputs to neural network.  Expected " +inputNodes + " but got "+inputs.length);
+			return null;
+		}
+		
+		double[] nodeValues = new double[networkWeights.length];
+		for(int input=0; input<inputNodes; input++)
+		{
+			nodeValues[input] = inputs[input];
+		}
+		
+		for(int workingNode=inputNodes; workingNode < networkWeights.length; workingNode++)
+		{
+			int sumOfInputs = 0;
+			for(int otherNode=0; otherNode<workingNode; otherNode++)
+			{
+				if(nodeValues[otherNode] != 0)
+				{
+					sumOfInputs += nodeValues[otherNode]*networkWeights[otherNode][workingNode];
+				}
+			}
+			if(sumOfInputs >= thresholds[workingNode])
+			{
+				nodeValues[workingNode] = 1;
+			}
+			else
+			{
+				nodeValues[workingNode] = 0;
+			}
+		}
+		
+		double[] outputs = new double[outputNodes];
+		for(int output = 0; output < outputNodes; output++)
+		{
+			outputs[output] = nodeValues[nodeValues.length-outputNodes+output];
+		}
+		return outputs;
+	}
+	
+	public void printTruthTable01()
+	{
+		System.out.println("Truth table for test neural network");
+		double[] input = new double[inputNodes];
+		
+		for(int inputNum=0; inputNum<Math.pow(2, inputNodes); inputNum++)
+		{
+			//setup input array using overly complex math because I want to
+			int testInputNum = inputNum;
+			int i = 0;
+			for(int test=(int) Math.pow(2, inputNodes-1); test>=1; test/=2)
+			{
+				if(testInputNum >= test)
+				{
+					testInputNum -= test;
+					input[input.length-1-i]=1;
+				}
+				else
+				{
+					input[input.length-1-i]=0;
+				}
+				i++;
+			}
+			
+			//now run our test
+			System.out.println(Arrays.toString(input)+":"+Arrays.toString(runNeuralNetwork(input)));
+		}
+	}
+}

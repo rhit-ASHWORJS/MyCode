@@ -1,0 +1,14 @@
+
+public class NetVisualizer {
+	double[][] networkWeights;
+	
+	public NetVisualizer(double[][] networkWeights)
+	{
+		this.networkWeights = networkWeights;
+	}
+	
+	public void swapNetwork(double[][] newNetworkWeights)
+	{
+		this.networkWeights = newNetworkWeights;
+	}
+}

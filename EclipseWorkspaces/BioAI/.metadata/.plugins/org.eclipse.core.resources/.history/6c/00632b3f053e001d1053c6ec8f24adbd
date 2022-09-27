@@ -1,0 +1,13 @@
+
+public class Main {
+
+	public static void main(String[] args)
+	{
+		String filename = Constants.PATH_CONF_FILE;
+		PropParser.load(filename);
+		System.out.println("Beginning Program...");
+		
+		HashMap<double[], double[]> testData = new HashMap<double[],double[]>();
+	}
+	
+}

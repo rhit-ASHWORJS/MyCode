@@ -1,0 +1,29 @@
+
+public class FeedForwardNeuralNet {
+	double[][] networkWeights;
+	int inputNodes;
+	int outputNodes;
+	
+	public FeedForwardNeuralNet(double[][] networkWeights, int inputNodes, int outputNodes)
+	{
+		this.networkWeights = networkWeights;
+		if(networkWeights.length != networkWeights[0].length)
+		{
+			System.err.println("FFNN declared with non-square matrix");
+			this.networkWeights = null;
+		}
+		this.inputNodes = inputNodes;
+		this.outputNodes = outputNodes;
+	}
+	
+	public double[] runNeuralNetwork(int[] inputs)
+	{
+		if(inputs.length != inputNodes)
+		{
+			System.err.println("Wrong number of inputs to neural network");
+			return null;
+		}
+		
+		double[] nodeValues = new double[networkWeights.length];
+	}
+}

@@ -1,0 +1,25 @@
+import javax.swing.JFrame;
+
+public class NetVisualizer {
+	double[][] networkWeights;
+	JFrame frame;
+	
+	public NetVisualizer(double[][] networkWeights)
+	{
+		this.networkWeights = networkWeights;
+		this.initializeFrame();
+	}
+	
+	public void swapNetwork(double[][] newNetworkWeights)
+	{
+		this.networkWeights = newNetworkWeights;
+	}
+	
+	public void initializeFrame()
+	{
+		this.frame = new JFrame();
+		this.frame.setVisible(true);
+	}
+	
+	
+}

@@ -1,0 +1,13 @@
+
+public class NeuralNet {
+	double[][] networkWeights;
+	int inputNodes;
+	int outputNodes;
+	
+	public NeuralNet(double[][] networkWeights, int inputNodes, int outputNodes)
+	{
+		this.networkWeights = networkWeights;
+		this.inputNodes = inputNodes;
+		this.outputNodes = outputNodes;
+	}
+}

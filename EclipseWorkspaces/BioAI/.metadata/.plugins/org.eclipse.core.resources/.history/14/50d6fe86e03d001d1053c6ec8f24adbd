@@ -1,0 +1,46 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
+public class NetVisualizer {
+	double[][] networkWeights;
+	JFrame frame;
+	
+	public NetVisualizer(double[][] networkWeights)
+	{
+		this.networkWeights = networkWeights;
+		this.initializeFrame();
+	}
+	
+	public void swapNetwork(double[][] newNetworkWeights)
+	{
+		this.networkWeights = newNetworkWeights;
+	}
+	
+	public void initializeFrame()
+	{
+		this.frame = new JFrame();
+		this.frame.add(new NetworkComponent());
+		this.frame.setVisible(true);
+		this.updateFrame();
+	}
+	
+	public void updateFrame()
+	{
+		
+	}
+	
+	public class NetworkComponent extends JComponent {
+		public NetworkComponent() {
+			
+		}
+		
+		public void paint(Graphics g)
+		{
+			super.paint(g);
+			Graphics2D g2d = (Graphics2D) g;
+		}
+	}
+}

@@ -1,0 +1,10 @@
+#all of these maximums apply + and -
+maximum.edge.weight = 2
+maximum.node.threshold = 5
+
+
+#evolution params
+mutation.rate=0.01
+threshold.mutation.rate=0
+#max change of a weight from 1 gen to next
+maximum.percent.change=0.25 

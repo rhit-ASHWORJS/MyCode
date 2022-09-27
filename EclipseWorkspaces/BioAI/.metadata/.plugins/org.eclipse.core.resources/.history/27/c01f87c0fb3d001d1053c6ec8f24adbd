@@ -1,0 +1,3 @@
+#all of these maximums apply + and -
+maximum.edge.weight = 10
+maximum.node.threshold = 10
