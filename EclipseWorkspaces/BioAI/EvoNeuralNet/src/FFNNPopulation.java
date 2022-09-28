@@ -10,7 +10,7 @@ public class FFNNPopulation {
 	{
 		for(int i=0; i<numInitial; i++)
 		{
-			networks.add(new FeedForwardNeuralNet(Constants.NUMNODES, 2, 1));
+			networks.add(new FeedForwardNeuralNet(Constants.NUMNODES, 3, 2));
 		}
 		
 		if(networks.size() != numInitial)

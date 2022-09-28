@@ -146,16 +146,40 @@ public class FeedForwardNeuralNet implements Comparable<FeedForwardNeuralNet>{
 			double[] neuralOutput = this.runNeuralNetwork(input);
 			for(int output=0; output<neuralOutput.length; output++)
 			{
-				double difference = neuralOutput[output] - desired.get(input)[output];
-				sumSquareDifferences += Math.pow(difference, 2);
+				double difference = (double)neuralOutput[output] - (double)desired.get(input)[output];
+				sumSquareDifferences += (double)Math.pow(difference, 2);
 			}
 		}
-		return Math.sqrt(sumSquareDifferences);
+		return (double)Math.sqrt(sumSquareDifferences);
+	}
+	
+	public int getNumErrors(HashMap<double[], double[]> desired)
+	{
+		int errors = 0;
+		for(double[] input : desired.keySet())
+		{
+			double[] neuralOutput = this.runNeuralNetwork(input);
+			for(int output=0; output<neuralOutput.length; output++)
+			{
+				double difference = (double)neuralOutput[output] - (double)desired.get(input)[output];
+				if(Math.abs(difference) > 0.0001)
+				{
+					errors += 1;
+				}
+			}
+		}
+		return errors;
 	}
 	
 	public double getFitness(HashMap<double[], double[]> desired)
 	{
-		return 1/(1+getMSE(desired));
+		return (double)1/((double)1+getMSE(desired));
+//		int outputsize = 0;
+//		for(double[] in : desired.keySet())
+//		{
+//			outputsize += desired.get(in).length;
+//		}
+//		return ((double)outputsize-(double)getNumErrors(desired))/(double)outputsize;
 	}
 	
 	public double getFitness()
@@ -223,6 +247,20 @@ public class FeedForwardNeuralNet implements Comparable<FeedForwardNeuralNet>{
 			
 			//now run our test
 			System.out.println(Arrays.toString(runNeuralNetworkComplex(input)));
+		}
+	}
+	
+	public void printEdgeWeights()
+	{
+		for(int i=0; i<networkWeights.length; i++)
+		{
+			for(int j=i+1; j<networkWeights.length; j++)
+			{
+				if(networkWeights[i][j]!=0)
+				{
+					System.out.println(i + "-->" + j + ":" + networkWeights[i][j]);
+				}
+			}
 		}
 	}
 	

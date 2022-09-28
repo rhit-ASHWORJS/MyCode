@@ -61,11 +61,11 @@ public class NetVisualizer {
 	
 	public class NetworkComponent extends JComponent {
 		
-		int circleRad = 50;
+		int circleRad = 100;
 		int xoffset = 50;
 		int yoffset = 50;
-		int xstep = 100;
-		int ystep = 100;
+		int xstep = 200;
+		int ystep = 200;
 		
 		int maxEdgeSize = 5;
 		
@@ -123,6 +123,7 @@ public class NetVisualizer {
 						}
 						g2d.setStroke(new BasicStroke((float) edgeSize));
 						g2d.drawLine(rowNum*xstep+circleRad/2, colNum*ystep+circleRad/2, row2Num*xstep+circleRad/2, col2Num*ystep+circleRad/2);
+//						g2d.drawString(""+(double)Math.round(networkWeights[nodeDrawing][otherNode]*100)/100, (3*rowNum*xstep+circleRad/2+row2Num*xstep+circleRad/2)/4, (3*colNum*ystep+circleRad/2+col2Num*ystep+circleRad/2)/4);
 						g2d.setColor(Color.BLACK);
 					}
 				}
