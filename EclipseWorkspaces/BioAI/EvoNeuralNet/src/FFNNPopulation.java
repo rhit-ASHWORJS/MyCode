@@ -59,8 +59,8 @@ public class FFNNPopulation {
 	}
 	
 	public static final double CROSSOVER_PROB = 0.3;
-	public static final double SUBSTITUTION_PROB = 0.69;
-	public static final double CLONING_PROB = 0.01;
+	public static final double SUBSTITUTION_PROB = 0.65;
+	public static final double CLONING_PROB = 0.05;
 	
 	public FFNNPopulation getNextGeneration()
 	{

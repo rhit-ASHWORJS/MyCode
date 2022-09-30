@@ -12,17 +12,12 @@ public class Main {
 		PropParser.load(filename);
 		System.out.println("Beginning Program...");
 		
-//		double[] zerozero = {0,0};
-//		double[] zeroone = {0,1};
-//		double[] onezero = {1,0};
-//		double[] oneone = {1,1};
-//		double[] one = {1};
-//		double[] zero = {0};
 		HashMap<double[], double[]> testData = new HashMap<double[],double[]>();
-//		testData.put(zerozero, zero);
-//		testData.put(zeroone, one);
-//		testData.put(onezero, one);
-//		testData.put(oneone, zero);
+//		testData.put(tar("zz"), tar("z"));
+//		testData.put(tar("zo"), tar("o"));
+//		testData.put(tar("oz"), tar("o"));
+//		testData.put(tar("oo"), tar("z"));
+//		System.out.println(testData);
 		
 		//----------bigboi
 		testData.put(tar("zzz"), tar("zz"));
@@ -34,8 +29,7 @@ public class Main {
 		testData.put(tar("ooz"), tar("zo"));
 		testData.put(tar("ooo"), tar("zz"));
 		FeedForwardNeuralNet.functionData = testData;
-		
-		
+
 		
 		ArrayList<FFNNPopulation> generations = new ArrayList<FFNNPopulation>();
 		FFNNPopulation initialPopulation = new FFNNPopulation();
@@ -52,7 +46,7 @@ public class Main {
             csvWriter.println("generation,max");
             csvWriter.println(0 + "," + initialPopulation.getBestFitness());
             int gen = 0;
-            while(generations.get(generations.size()-1).getBestFitness() != 1 && gen < 20000)
+            while(generations.get(generations.size()-1).getBestFitness() != 1 && gen < 200000)
 //            while(gen < 1000)
             {
             	gen++;
@@ -72,7 +66,7 @@ public class Main {
 		
 		FeedForwardNeuralNet best = generations.get(generations.size()-1).getBest();
 		
-		best.printTruthTable01Complex();
+		best.printTruthTable01();
 		best.printEdgeWeights();
 	}
 	

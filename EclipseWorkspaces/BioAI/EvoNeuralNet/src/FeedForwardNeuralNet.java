@@ -20,6 +20,7 @@ public class FeedForwardNeuralNet implements Comparable<FeedForwardNeuralNet>{
 		this.thresholds = thresholds;
 		this.inputNodes = inputNodes;
 		this.outputNodes = outputNodes;
+		this.enforceConstraints();
 	}
 	
 	public FeedForwardNeuralNet(int numNodes, int inputs, int outputs)
@@ -44,6 +45,7 @@ public class FeedForwardNeuralNet implements Comparable<FeedForwardNeuralNet>{
 		
 		this.inputNodes = inputs;
 		this.outputNodes = outputs;
+		this.enforceConstraints();
 //		if(!this.enforceConstraints())
 //		{
 //			System.out.println("Random generation weird, please fix");
@@ -70,7 +72,7 @@ public class FeedForwardNeuralNet implements Comparable<FeedForwardNeuralNet>{
 		
 		for(int workingNode=inputNodes; workingNode < networkWeights.length; workingNode++)
 		{
-			int sumOfInputs = 0;
+			double sumOfInputs = 0;
 			for(int otherNode=0; otherNode<workingNode; otherNode++)
 			{
 				if(nodeValues[otherNode] != 0)
@@ -78,6 +80,7 @@ public class FeedForwardNeuralNet implements Comparable<FeedForwardNeuralNet>{
 					sumOfInputs += nodeValues[otherNode]*networkWeights[otherNode][workingNode];
 				}
 			}
+//			System.out.println(sumOfInputs);
 			if(sumOfInputs >= thresholds[workingNode])
 			{
 				nodeValues[workingNode] = 1;
@@ -96,47 +99,47 @@ public class FeedForwardNeuralNet implements Comparable<FeedForwardNeuralNet>{
 		return outputs;
 	}
 	
-	public double[] runNeuralNetworkComplex(double[] inputs)
-	{
-		if(inputs.length != inputNodes)
-		{
-			System.err.println("Wrong number of inputs to neural network.  Expected " +inputNodes + " but got "+inputs.length);
-			return null;
-		}
-		
-		double[] nodeValues = new double[networkWeights.length];
-		for(int input=0; input<inputNodes; input++)
-		{
-			nodeValues[input] = inputs[input];
-		}
-		
-		for(int workingNode=inputNodes; workingNode < networkWeights.length; workingNode++)
-		{
-			int sumOfInputs = 0;
-			for(int otherNode=0; otherNode<workingNode; otherNode++)
-			{
-				if(nodeValues[otherNode] != 0)
-				{
-					sumOfInputs += nodeValues[otherNode]*networkWeights[otherNode][workingNode];
-				}
-			}
-			if(sumOfInputs >= thresholds[workingNode])
-			{
-				nodeValues[workingNode] = 1;
-			}
-			else
-			{
-				nodeValues[workingNode] = 0;
-			}
-		}
-		
+//	public double[] runNeuralNetworkComplex(double[] inputs)
+//	{
+//		if(inputs.length != inputNodes)
+//		{
+//			System.err.println("Wrong number of inputs to neural network.  Expected " +inputNodes + " but got "+inputs.length);
+//			return null;
+//		}
+//		
+//		double[] nodeValues = new double[networkWeights.length];
+//		for(int input=0; input<inputNodes; input++)
+//		{
+//			nodeValues[input] = inputs[input];
+//		}
+//		
+//		for(int workingNode=inputNodes; workingNode < networkWeights.length; workingNode++)
+//		{
+//			int sumOfInputs = 0;
+//			for(int otherNode=0; otherNode<workingNode; otherNode++)
+//			{
+//				if(nodeValues[otherNode] != 0)
+//				{
+//					sumOfInputs += nodeValues[otherNode]*networkWeights[otherNode][workingNode];
+//				}
+//			}
+//			if(sumOfInputs >= thresholds[workingNode])
+//			{
+//				nodeValues[workingNode] = 1;
+//			}
+//			else
+//			{
+//				nodeValues[workingNode] = 0;
+//			}
+//		}
+//		
 //		double[] outputs = new double[outputNodes];
 //		for(int output = 0; output < outputNodes; output++)
 //		{
 //			outputs[output] = nodeValues[nodeValues.length-outputNodes+output];
 //		}
-		return nodeValues;
-	}
+//		return outputs;
+//	}
 	
 	public double getMSE(HashMap<double[], double[]> desired)
 	{
@@ -221,34 +224,34 @@ public class FeedForwardNeuralNet implements Comparable<FeedForwardNeuralNet>{
 		}
 	}
 	
-	public void printTruthTable01Complex()
-	{
-		System.out.println("Truth table for test neural network");
-		double[] input = new double[inputNodes];
-		
-		for(int inputNum=0; inputNum<Math.pow(2, inputNodes); inputNum++)
-		{
-			//setup input array using overly complex math because I want to
-			int testInputNum = inputNum;
-			int i = 0;
-			for(int test=(int) Math.pow(2, inputNodes-1); test>=1; test/=2)
-			{
-				if(testInputNum >= test)
-				{
-					testInputNum -= test;
-					input[input.length-1-i]=1;
-				}
-				else
-				{
-					input[input.length-1-i]=0;
-				}
-				i++;
-			}
-			
-			//now run our test
-			System.out.println(Arrays.toString(runNeuralNetworkComplex(input)));
-		}
-	}
+//	public void printTruthTable01Complex()
+//	{
+//		System.out.println("Truth table for test neural network");
+//		double[] input = new double[inputNodes];
+//		
+//		for(int inputNum=0; inputNum<Math.pow(2, inputNodes); inputNum++)
+//		{
+//			//setup input array using overly complex math because I want to
+//			int testInputNum = inputNum;
+//			int i = 0;
+//			for(int test=(int) Math.pow(2, inputNodes-1); test>=1; test/=2)
+//			{
+//				if(testInputNum >= test)
+//				{
+//					testInputNum -= test;
+//					input[input.length-1-i]=1;
+//				}
+//				else
+//				{
+//					input[input.length-1-i]=0;
+//				}
+//				i++;
+//			}
+//			
+//			//now run our test
+//			System.out.println(Arrays.toString(runNeuralNetworkComplex(input)));
+//		}
+//	}
 	
 	public void printEdgeWeights()
 	{
