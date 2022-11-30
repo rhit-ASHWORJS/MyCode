@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="FeedForwardNeuralNet"/>
+    <fullyQualifiedTypeName name="StrategyGeneration"/>
+    <fullyQualifiedTypeName name="SeededRandom"/>
+    <fullyQualifiedTypeName name="LearningStrategy"/>
+    <fullyQualifiedTypeName name="config.Constants"/>
+    <fullyQualifiedTypeName name="control.Constants"/>
+    <fullyQualifiedTypeName name="seededrandom.SeededRandom"/>
+</qualifiedTypeNameHistroy>

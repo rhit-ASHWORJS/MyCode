@@ -1,0 +1,14 @@
+package evolution;
+
+import control.Constants;
+
+public class StrategyGenerator {
+	
+	//Handles the generation of initial strategies
+	//Generates them randomly, or follows the strategy specified in constants
+	public static String[] generateStrategy() {
+		String[] strategy = new String[Constants.STRATEGY_LENGTH];
+		
+		case(Constants.)
+	}
+}

@@ -1,0 +1,17 @@
+package config;
+
+/**
+ * This file should list exactly the strings to be referenced from the code
+ * base. It will load the user specified values from a configuration file and
+ * other files that are not meant to be user adjustable.
+ * 
+ * @author Jason Yoder
+ *
+ */
+public class Constants {
+
+	// Properties (user configurable)
+	public static final int STRATEGY_LENGTH = Integer.parseInt(PropParser.getProperty("strategyLength"));
+	public static final String STRATEGY_STEPS = PropParser.getProperty("strategySteps");
+	
+} 

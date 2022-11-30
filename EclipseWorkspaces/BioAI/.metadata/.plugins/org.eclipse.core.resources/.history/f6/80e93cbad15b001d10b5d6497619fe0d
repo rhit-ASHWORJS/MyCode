@@ -1,0 +1,30 @@
+package evolution;
+
+import control.Constants;
+import seededrandom.SeededRandom;
+
+public class StrategyManager {
+	
+	//Handles the generation of initial strategies
+	//Generates them randomly, or follows the strategy specified in constants
+	
+	//It may be slightly inefficient to build the comparison strategies separately each time, but
+	//considering the fact that this method is only used in generating the initial population it
+	//shouldn't be a significant performance impact
+	public static String[] getStrategy() {
+		String[] strategy = new String[Constants.STRATEGY_LENGTH];
+		
+		if(Constants.STARTING_STRATEGY.equals("NONE"))
+		{
+			String[] availableSteps = Constants.STRATEGY_STEPS.split(",");
+			
+			for(int i=0; i<strategy.length; i++)
+			{
+				int step = SeededRandom.rnd.nextInt(availableSteps.length);
+				strategy[i] = availableSteps[step];
+			}
+		}
+		
+		return strategy;
+	}
+}

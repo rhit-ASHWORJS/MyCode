@@ -1,0 +1,51 @@
+#Strategy Parameters
+
+#Strategy Paramaters
+strategyLength = 20
+
+#Specifies which steps we are using
+#RW=random walk
+#SA=steepest ascent (steepest hill climb)
+#SD=steepest decent (opposite of steepest hill climb)
+#more will be added later
+strategySteps=RW,SA,SD
+
+#Landscape Parameters
+#to run a single n or k, set the respective increments to 0
+
+n = 5
+nIncrements = 0
+nIncrementSize = 0
+
+k = 2
+kIncrements = 0
+kIncrementSize = 0
+
+#Evolution Parameters
+#Choices
+#truncation: Kill bottom half, top half live
+#ranked: Standard tournament-based ranked selection
+selectionType = truncation
+numGenerations = 50
+generationSize = 10
+mutationRate = 0.02
+
+#Seed parameters
+seed = 500
+
+#Data Reporting Parameters
+incrementCSVoutput = 5
+#Output filename Parameter
+filename = LERPTest
+
+#Num Simulation Parameters
+landscapes = 50
+startsPerLandscape = 1
+runsPerStart = 1
+samplesPerRun = 25
+
+#DOP Params
+
+generationsPerCycle = 1
+landscapeName = LERPFitnessLandscape
+landscapeParams = 50

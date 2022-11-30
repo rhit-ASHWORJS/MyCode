@@ -1,0 +1,28 @@
+package config;
+
+/**
+ * This file should list exactly the strings to be referenced from the code
+ * base. It will load the user specified values from a configuration file and
+ * other files that are not meant to be user adjustable.
+ * 
+ * @author Jason Yoder
+ *
+ */
+public class Constants {
+
+	// Properties (user configurable)
+	public static final int STRATEGY_LENGTH = Integer.parseInt(PropParser.getProperty("strategyLength"));
+	public static final String STRATEGY_STEPS = PropParser.getProperty("strategySteps");
+	
+	public static final int N_START = Integer.parseInt(PropParser.getProperty("n"));
+	public static final int N_INCREMENT = Integer.parseInt(PropParser.getProperty("nIncrement"));
+	public static final int N_INCREMENT_SIZE = Integer.parseInt(PropParser.getProperty("nIncrementSize"));
+	
+	public static final int K_START = Integer.parseInt(PropParser.getProperty("k"));
+	public static final int K_INCREMENT = Integer.parseInt(PropParser.getProperty("kIncrement"));
+	public static final int K_INCREMENT_SIZE = Integer.parseInt(PropParser.getProperty("kIncrementSize"));
+	
+	public static final String SELECTION_TYPE = PropParser.getProperty("selectionType");
+	public static final int NUM_GENERATIONS = PropParser.getProperty("numGenerations");
+	
+} 
